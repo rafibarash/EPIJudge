@@ -4,10 +4,17 @@ from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
+class Node:
+    def __init__(self, data=None, next=None):
+        self.data = data
+        self.next = next
 
 def create_list_of_leaves(tree):
-    # TODO - you fill in here.
-    return []
+    if not tree:
+        return []
+    if not tree.left and not tree.right:
+        return [tree]
+    return create_list_of_leaves(tree.left) + create_list_of_leaves(tree.right)
 
 
 @enable_executor_hook

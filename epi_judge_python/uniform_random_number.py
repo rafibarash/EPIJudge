@@ -1,5 +1,6 @@
 import functools
 import random
+import math
 
 from test_framework import generic_test
 from test_framework.random_sequence_checker import (
@@ -12,8 +13,23 @@ def zero_one_random():
 
 
 def uniform_random(lower_bound, upper_bound):
-    # TODO - you fill in here.
-    return 0
+    n_flips = math.ceil(math.log2(upper_bound - lower_bound))
+    if n_flips == 0:
+        n_flips = 1
+    done = False
+    while not done:
+        b_mask = ''
+        for i in range(n_flips):
+            b_mask += str(zero_one_random())
+        p = 1
+        ans = lower_bound
+        for ch in b_mask:
+            ans += int(ch)*p
+            p *= 2
+        if ans <= upper_bound:
+            done = True
+    return ans
+
 
 
 @enable_executor_hook

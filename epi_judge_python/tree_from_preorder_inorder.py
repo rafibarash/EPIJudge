@@ -2,31 +2,35 @@ from test_framework import generic_test
 
 
 def binary_tree_from_preorder_inorder(preorder, inorder):
-    class Node:
+    class BinaryTreeNode:
         def __init__(self, data=None, left=None, right=None):
             self.data = data
             self.left = left
             self.right = right
-    
-    # root is preorder[0]
-    # all elements left of root in inorder are left, all right are right
-    # if preorder[1] is left of 
-    def build_tree(parent, preorder, inorder):
-        if len(inorder) == 0 or len(preorder) == 0:
-            return None
-        if not parent:
-            parent = Node(data = preorder[0])
-        i = inorder.index(preorder[0])
-        l_index = 
-        left = build_tree(parent, preorder[1:], inorder[0:i])
-        right = build_tree(parent, preorder[1:], inorder[i+1:])
-        parent.left = left
-        parent.right = right
-        i = inorder.index(preorder[0])
-        node = Node(preorder[0])
 
-        
-    return build_tree(None, preorder, inorder)
+    def findNode(node, arr):
+        for i, n in enumerate(arr):
+            if n == node:
+                return i
+        return -1
+
+    # base case
+    if len(preorder) == 0 or len(inorder) == 0:
+        return None
+    # get current node
+    cur_data = preorder[0]
+    i = findNode(cur_data, inorder)
+    # split inorder arrays into left and right
+    left_preorder = preorder[1:i+1]
+    right_preorder = preorder[i+1:]
+    left_inorder = inorder[:i]
+    right_inorder = inorder[i+1:]
+    # build node
+    node = BinaryTreeNode(cur_data)
+    node.left = binary_tree_from_preorder_inorder(left_preorder, left_inorder)
+    node.right = binary_tree_from_preorder_inorder(
+        right_preorder, right_inorder)
+    return node
 
 
 if __name__ == '__main__':

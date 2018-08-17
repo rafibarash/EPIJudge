@@ -2,8 +2,18 @@ from test_framework import generic_test
 
 
 def search_first_of_k(A, k):
-    # TODO - you fill in here.
-    return 0
+    L, H = 0, len(A)-1
+    ans = -1
+    while L <= H:
+        M = L + (H - L) // 2
+        if A[M] == k:
+            ans = M
+            H = M - 1
+        elif A[M] < k:
+            L = M + 1
+        else:
+            H = M - 1
+    return ans
 
 
 if __name__ == '__main__':

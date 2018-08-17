@@ -7,8 +7,26 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def lca(node0, node1):
-    # TODO - you fill in here.
-    return None
+    if not node0.parent:
+        return node0
+    if not node1.parent:
+        return node1
+    s0, s1 = [], []
+    while node0.parent != None:
+        s0.append(node0)
+        node0 = node0.parent
+    while node1.parent != None:
+        s1.append(node1)
+        node1 = node1.parent
+    while node0.data == node1.data and len(s0) != 0 and len(s1) != 0:
+        node0, node1 = s0.pop(), s1.pop()
+    if node0.data == node1.data:  # tree only has one node
+        return node0
+    elif len(s0) == 0:
+        return node0.parent
+    elif len(s1) == 0:
+        return node1.parent
+    return node1.parent
 
 
 @enable_executor_hook

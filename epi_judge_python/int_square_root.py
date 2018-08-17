@@ -1,9 +1,11 @@
 from test_framework import generic_test
+from math import floor, sqrt
 
 
 def square_root(k):
-    # TODO - you fill in here.
-    return 0
+    # lol fast way to do it without searching
+    return floor(sqrt(k))
+    # but with searching ......
 
 
 if __name__ == '__main__':

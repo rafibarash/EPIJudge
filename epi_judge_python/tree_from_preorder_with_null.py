@@ -5,7 +5,7 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def reconstruct_preorder(preorder):
-    # TODO - you fill in here.
+
     return None
 
 

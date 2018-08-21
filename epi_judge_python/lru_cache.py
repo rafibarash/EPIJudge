@@ -4,8 +4,8 @@ from test_framework.test_failure import TestFailure
 
 class LruCache:
     def __init__(self, capacity):
-        # TODO - you fill in here.
-        return
+        self._table = {}
+        self._capacity = capacity
 
     def lookup(self, isbn):
         # TODO - you fill in here.

@@ -2,8 +2,12 @@ from test_framework import generic_test
 
 
 def buy_and_sell_stock_once(prices):
-    # TODO - you fill in here.
-    return 0.0
+    myMax, buy = 0, float('inf')
+    for p in prices:
+        diff = p - buy
+        myMax = max(myMax, diff)
+        buy = min(buy, p)
+    return myMax
 
 
 if __name__ == '__main__':
